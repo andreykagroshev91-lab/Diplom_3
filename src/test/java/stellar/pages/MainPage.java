@@ -9,21 +9,21 @@ import stellar.utils.Config;
 public class MainPage extends BasePage {
 
     private final By mainTitle = By.xpath("//h1[contains(text(), 'Соберите бургер')]");
-    private final By loginAccountButton = By.xpath(".//button[contains(text(), 'Войти в аккаунт')]");
-    private final By personalAccountButton = By.xpath(".//p[contains(text(), 'Личный Кабинет')]");
+    private final By loginAccountButton = By.xpath("//button[text()='Войти в аккаунт']");
+    private final By personalAccountButton = By.xpath("//p[text()='Личный Кабинет']");
 
-    // Локаторы вкладок конструктора
-    private final By bunsTab = By.xpath(".//span[text()='Булки']/parent::div");
-    private final By saucesTab = By.xpath(".//span[text()='Соусы']/parent::div");
-    private final By fillingsTab = By.xpath(".//span[text()='Начинки']/parent::div");
+    // Локаторы вкладок
+    private final By bunsTab = By.xpath("//span[text()='Булки']/parent::div[contains(@class, 'tab_tab__')]");
+    private final By saucesTab = By.xpath("//span[text()='Соусы']/parent::div[contains(@class, 'tab_tab__')]");
+    private final By fillingsTab = By.xpath("//span[text()='Начинки']/parent::div[contains(@class, 'tab_tab__')]");
 
     // Локаторы заголовков разделов
-    private final By bunsHeader = By.xpath("//h2[contains(text(),'Булки')]");
-    private final By saucesHeader = By.xpath("//h2[contains(text(),'Соусы')]");
-    private final By fillingsHeader = By.xpath("//h2[contains(text(),'Начинки')]");
+    private final By bunsHeader = By.xpath("//h2[text()='Булки']");
+    private final By saucesHeader = By.xpath("//h2[text()='Соусы']");
+    private final By fillingsHeader = By.xpath("//h2[text()='Начинки']");
 
-    // Класс активной вкладки (смотрим по классу)
-    private final String ACTIVE_TAB_CLASS = "tab_tab_type_current__2BEPc";
+    // Класс активной вкладки - ДОБАВЛЯЕМ static
+    private static final String ACTIVE_TAB_CLASS = "tab_tab_type_current__2BEPc";
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -98,7 +98,11 @@ public class MainPage extends BasePage {
 
     @Step("Проверить, что главная страница загружена")
     public boolean isPageLoaded() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(mainTitle)).isDisplayed();
+        try {
+            return driver.findElement(mainTitle).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Step("Ожидать загрузки главной страницы после входа")
@@ -107,6 +111,7 @@ public class MainPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(mainTitle));
     }
 
+    // Убираем @Step из приватных методов
     private void clickTab(By tabLocator) {
         wait.until(ExpectedConditions.elementToBeClickable(tabLocator)).click();
     }

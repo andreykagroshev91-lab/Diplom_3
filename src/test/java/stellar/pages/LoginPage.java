@@ -8,13 +8,14 @@ import stellar.utils.Config;
 
 public class LoginPage extends BasePage {
 
-    // Локаторы
-    private final By emailField = By.xpath("//input[@name='name']");
-    private final By passwordField = By.xpath("//input[@name='Пароль']");
+    // Локаторы - ИСПРАВЛЕННЫЕ
+    private final By emailField = By.xpath("//input[@type='text' and @name='name']");
+    private final By passwordField = By.xpath("//input[@type='password']");
     private final By loginButton = By.xpath("//button[text()='Войти']");
     private final By registerLink = By.xpath("//a[text()='Зарегистрироваться']");
     private final By forgotPasswordLink = By.xpath("//a[text()='Восстановить пароль']");
     private final By loginHeader = By.xpath("//h2[text()='Вход']");
+    private final By loginLink = By.xpath("//a[text()='Войти']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -55,7 +56,6 @@ public class LoginPage extends BasePage {
 
     @Step("Нажать ссылку 'Войти'")
     public void clickLoginLink() {
-        By loginLink = By.xpath("//a[text()='Войти']");
         wait.until(ExpectedConditions.elementToBeClickable(loginLink)).click();
     }
 }

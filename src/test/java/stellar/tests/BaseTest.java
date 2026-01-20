@@ -1,10 +1,9 @@
 package stellar.tests;
 
+import io.qameta.allure.Allure;
 import io.restassured.RestAssured;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import stellar.api.UserClient;
 import stellar.data.UserGenerator;
@@ -15,10 +14,6 @@ import stellar.pages.RegistrationPage;
 import stellar.utils.Config;
 import stellar.utils.DriverManager;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-@RunWith(Parameterized.class)
 public abstract class BaseTest {
 
     protected WebDriver driver;
@@ -29,27 +24,18 @@ public abstract class BaseTest {
     protected User testUser;
     protected String userToken;
 
-    protected final String browserType;
-
-    public BaseTest(String browserType) {
-        this.browserType = browserType;
-    }
-
-    @Parameterized.Parameters(name = "Browser: {0}")
-    public static Collection<Object[]> getBrowserParams() {
-        return Arrays.asList(new Object[][] {
-                {"chrome"},
-                {"yandex"}
-        });
-    }
-
     @Before
     public void setUp() {
         // Настройка RestAssured
         RestAssured.baseURI = Config.API_URL;
 
-        // Устанавливаем системное свойство для браузера
-        System.setProperty("browser", browserType);
+        // Получаем браузер из системной переменной
+        String browser = System.getProperty("browser", "chrome");
+
+        System.out.println("Starting tests in browser: " + browser);
+
+        // Добавляем информацию о браузере в Allure
+        Allure.label("browser", browser);
 
         // Получаем драйвер
         driver = DriverManager.getDriver();

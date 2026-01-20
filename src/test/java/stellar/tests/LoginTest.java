@@ -8,13 +8,10 @@ import static org.junit.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
-    public LoginTest(String browserType) {
-        super(browserType);
-    }
-
     @Test
     @DisplayName("Вход по кнопке «Войти в аккаунт» на главной")
-    @Description("Тест проверяет вход через кнопку «Войти в аккаунт» на главной странице")
+    @Description("Тест проверяет вход через кнопку «Войти в аккаунт» на главной странице. " +
+            "Проверяет возможность аутентификации пользователя с валидными данными.")
     public void loginViaMainPageButtonTest() {
         mainPage.open();
         assertTrue("Главная страница не загрузилась", mainPage.isPageLoaded());
@@ -30,7 +27,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход через кнопку «Личный кабинет»")
-    @Description("Тест проверяет вход через кнопку «Личный кабинет» в хедере")
+    @Description("Тест проверяет вход через кнопку «Личный кабинет» в хедере. " +
+            "Проверяет альтернативный способ аутентификации пользователя.")
     public void loginViaPersonalAccountButtonTest() {
         mainPage.open();
         assertTrue("Главная страница не загрузилась", mainPage.isPageLoaded());
@@ -46,7 +44,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход через кнопку в форме регистрации")
-    @Description("Тест проверяет вход через ссылку «Войти» на странице регистрации")
+    @Description("Тест проверяет вход через ссылку «Войти» на странице регистрации. " +
+            "Проверяет переход со страницы регистрации на страницу входа.")
     public void loginViaRegistrationFormLinkTest() {
         registrationPage.open();
         assertTrue("Страница регистрации не загрузилась", registrationPage.isPageLoaded());
@@ -62,7 +61,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход через кнопку в форме восстановления пароля")
-    @Description("Тест проверяет вход через ссылку «Войти» на странице восстановления пароля")
+    @Description("Тест проверяет вход через ссылку «Войти» на странице восстановления пароля. " +
+            "Проверяет переход со страницы восстановления пароля на страницу входа.")
     public void loginViaPasswordRecoveryFormLinkTest() {
         loginPage.open();
         loginPage.goToForgotPassword();

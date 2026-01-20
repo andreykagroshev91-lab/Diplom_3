@@ -12,13 +12,10 @@ import static org.junit.Assert.assertTrue;
 
 public class RegistrationTest extends BaseTest {
 
-    public RegistrationTest(String browserType) {
-        super(browserType);
-    }
-
     @Test
     @DisplayName("Успешная регистрация")
-    @Description("Тест проверяет успешную регистрацию пользователя с валидными данными")
+    @Description("Тест проверяет успешную регистрацию пользователя с валидными данными. " +
+            "Проверяет создание пользователя через UI и последующую верификацию через API.")
     public void successfulRegistrationTest() {
         // Генерируем данные для нового пользователя
         User newUser = UserGenerator.createRandomUser();
@@ -53,7 +50,8 @@ public class RegistrationTest extends BaseTest {
 
     @Test
     @DisplayName("Ошибка для некорректного пароля")
-    @Description("Тест проверяет отображение ошибки при регистрации с паролем короче 6 символов")
+    @Description("Тест проверяет отображение ошибки при регистрации с паролем короче 6 символов. " +
+            "Проверяет валидацию минимальной длины пароля на стороне фронтенда.")
     public void registrationWithShortPasswordTest() {
         User user = UserGenerator.createUserWithShortPassword();
 

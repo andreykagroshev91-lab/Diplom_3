@@ -8,10 +8,10 @@ import stellar.utils.Config;
 
 public class RegistrationPage extends BasePage {
 
-    // Локаторы
-    private final By nameField = By.xpath("//fieldset[1]//input");
-    private final By emailField = By.xpath("//fieldset[2]//input");
-    private final By passwordField = By.xpath("//fieldset[3]//input");
+    // Локаторы - ИСПРАВЛЕННЫЕ
+    private final By nameField = By.xpath("//label[text()='Имя']/following-sibling::input");
+    private final By emailField = By.xpath("//label[text()='Email']/following-sibling::input");
+    private final By passwordField = By.xpath("//input[@type='password']");
     private final By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
     private final By loginLink = By.xpath("//a[text()='Войти']");
     private final By passwordError = By.xpath("//p[contains(text(), 'Некорректный пароль')]");

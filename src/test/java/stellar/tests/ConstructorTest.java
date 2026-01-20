@@ -1,5 +1,6 @@
 package stellar.tests;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 
@@ -7,12 +8,9 @@ import static org.junit.Assert.assertTrue;
 
 public class ConstructorTest extends BaseTest {
 
-    public ConstructorTest(String browserType) {
-        super(browserType);
-    }
-
     @Test
     @DisplayName("Переход к разделу «Булки»")
+    @Description("Проверка перехода к разделу 'Булки' в конструкторе бургеров.")
     public void switchToBunsSectionTest() {
         mainPage.open();
         assertTrue("Главная страница не загрузилась", mainPage.isPageLoaded());
@@ -30,6 +28,7 @@ public class ConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Переход к разделу «Соусы»")
+    @Description("Проверка перехода к разделу 'Соусы' в конструкторе бургеров.")
     public void switchToSaucesSectionTest() {
         mainPage.open();
         assertTrue("Главная страница не загрузилась", mainPage.isPageLoaded());
@@ -42,6 +41,7 @@ public class ConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Переход к разделу «Начинки»")
+    @Description("Проверка перехода к разделу 'Начинки' в конструкторе бургеров.")
     public void switchToFillingsSectionTest() {
         mainPage.open();
         assertTrue("Главная страница не загрузилась", mainPage.isPageLoaded());
